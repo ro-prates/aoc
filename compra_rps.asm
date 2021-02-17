@@ -1,3 +1,39 @@
+# PARA AJUDAR COM OS VALORES:
+
+# COMPRA 1:
+# Quantidade em inteiro: $t1
+# Quantidade em float: $f0
+# Nome do produto: p1
+# Valor em float multiplicado: $f2
+
+# COMPRA 2:
+# Quantidade em inteiro: $t3
+# Quantidade em float: $f0
+# Nome do produto: p2
+# Valor em float multiplicado: $f4
+# Valor total da compra: $f5
+
+# COMPRA 3:
+# Quantidade em inteiro: $t4
+# Quantidade em float: $f0
+# Nome do produto: p3
+# Valor em float multiplicado: $f7
+# Valor total da compra: $f8
+
+# COMPRA 4:
+# Quantidade em inteiro: $t5
+# Quantidade em float: $f0
+# Nome do produto: p4
+# Valor em float multiplicado: $f11
+# Valor total da compra: $f13
+
+# COMPRA 5:
+# Quantidade em inteiro: $t6
+# Quantidade em float: $f0
+# Nome do produto: p5
+# Valor em float multiplicado: $f15
+# Valor total da compra: $f16
+
 .data
 	msg1: .asciiz "Digite o nome do produto:\n"
 	valor: .asciiz "Insira o valor unitário deste produto:\n"
