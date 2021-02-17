@@ -10,7 +10,6 @@
 	p4: .space 30
 	p5: .space 30
 	parabens: .asciiz "\nVoce digitou 1"
-	nao: .asciiz "\nVoce digitou 00000"
 	pedido: .asciiz "\nPedido:\n\n"
 	letrax: .asciiz "x "
 	valor_unitario: .asciiz "Valor unitário: "
@@ -42,7 +41,8 @@
 	li $v0, 6 # O valor lido está em $f0
 	syscall 
 	
-	add.s $f1, $f0, $f10 # O primeiro valor está em $f1
+	# O primeiro valor está em $f1
+	add.s $f1, $f0, $f10 
 	
 	# Instrução para impressão da mensagem de digitar a quantidade
 	li $v0, 4 
@@ -73,6 +73,7 @@
 	# A resposta está em $t2
 	move $t2, $v0
 	
+	# Verificando se o usuário deseja continuar com a compra ou não
 	beq $t2, 1, continua
 	
 	# Caso a compra tenha sido encerrada com apenas 1 produto
@@ -105,6 +106,7 @@
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela
 	add.s $f12, $f1, $f10
 	
 	# Exibe o valor em float
@@ -121,6 +123,7 @@
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela
 	add.s $f12, $f2, $f10
 	
 	# Exibe o valor em float
@@ -183,9 +186,12 @@ continua:
 	# A resposta está em $t2
 	move $t2, $v0
 	
+	# Verificando se o usuário deseja continuar com a compra ou não
 	beq $t2, 1, continua1
 	
 	# Caso a compra tenha sido encerrada com 2 produtos
+	
+	# PRODUTO 1
 	li $v0, 4 
 	la $a0, pedido 
 	syscall
@@ -215,6 +221,7 @@ continua:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela
 	add.s $f12, $f1, $f10
 	
 	# Exibe o valor em float
@@ -231,6 +238,7 @@ continua:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela
 	add.s $f12, $f2, $f10
 	
 	# Exibe o valor em float
@@ -242,7 +250,7 @@ continua:
 	la $a0, duaslinhas
 	syscall
 	
-	#PRODUTO 2
+	# PRODUTO 2
 	
 	# Instrução para impressão da quantidade em inteiro
 	li $v0, 1 
@@ -254,7 +262,7 @@ continua:
 	la $a0, letrax 
 	syscall
 	
-	# Instrução para impressão do nome do produto p1
+	# Instrução para impressão do nome do produto p2
 	li $v0, 4 
 	la $a0, p2
 	syscall
@@ -269,6 +277,7 @@ continua:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f3, $f10
 	
 	# Exibe o valor em float
@@ -285,6 +294,7 @@ continua:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f4, $f10
 			
 	# Exibe o valor em float
@@ -321,7 +331,7 @@ continua1:
 	la $a0, msg1 
 	syscall
 	
-	# Armazena o que o usuário digitou em p2
+	# Armazena o que o usuário digitou em p3
 	li $v0, 8
 	la $a0, p3
 	la $a1, 30
@@ -337,14 +347,6 @@ continua1:
 	syscall 
 	
 	add.s $f6, $f0, $f10 # O terceiro valor está em $f6
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	# Instrução para impressão da mensagem de digitar a quantidade
 	li $v0, 4 
@@ -375,21 +377,10 @@ continua1:
 	# A resposta está em $t2
 	move $t2, $v0
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	# Verificando se o usuário deseja continuar com a compra ou não
 	beq $t2, 1, continua2
+	
+	# PRODUTO 1
 	
 	# Caso a compra tenha sido encerrada com 3 produtos
 	li $v0, 4 
@@ -421,6 +412,7 @@ continua1:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela  
 	add.s $f12, $f1, $f10
 	
 	# Exibe o valor em float
@@ -437,6 +429,7 @@ continua1:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela  
 	add.s $f12, $f2, $f10
 	
 	# Exibe o valor em float
@@ -448,7 +441,7 @@ continua1:
 	la $a0, duaslinhas
 	syscall
 	
-	#PRODUTO 2
+	# PRODUTO 2
 	
 	# Instrução para impressão da quantidade em inteiro
 	li $v0, 1 
@@ -460,7 +453,7 @@ continua1:
 	la $a0, letrax 
 	syscall
 	
-	# Instrução para impressão do nome do produto p1
+	# Instrução para impressão do nome do produto p2
 	li $v0, 4 
 	la $a0, p2
 	syscall
@@ -532,6 +525,7 @@ continua1:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela  
 	add.s $f12, $f6, $f10
 	
 	# Exibe o valor em float
@@ -548,6 +542,7 @@ continua1:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela  
 	add.s $f12, $f7, $f10
 			
 	# Exibe o valor em float
@@ -579,7 +574,7 @@ continua1:
 	syscall
 	
 continua2:
-# Instrução para impressão da mensagem de digitar o nome do produto
+	# Instrução para impressão da mensagem de digitar o nome do produto
 	li $v0, 4 
 	la $a0, msg1 
 	syscall
@@ -599,7 +594,8 @@ continua2:
 	li $v0, 6 # O valor lido está em $f0
 	syscall 
 	
-	add.s $f9, $f0, $f10 # O quarto valor está em $f9
+	# O quarto valor está em $f9
+	add.s $f9, $f0, $f10 
 	
 	# Instrução para impressão da mensagem de digitar a quantidade
 	li $v0, 4 
@@ -630,14 +626,8 @@ continua2:
 	# A resposta está em $t2
 	move $t2, $v0
 	
+	# Verificando se o usuário deseja continuar com a compra ou não
 	beq $t2, 1, continua3
-	
-	
-	
-	
-	
-	
-	
 	
 	# PRODUTO 1
 	
@@ -710,7 +700,7 @@ continua2:
 	la $a0, letrax 
 	syscall
 	
-	# Instrução para impressão do nome do produto p1
+	# Instrução para impressão do nome do produto p2
 	li $v0, 4 
 	la $a0, p2
 	syscall
@@ -725,6 +715,7 @@ continua2:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f3, $f10
 	
 	# Exibe o valor em float
@@ -741,6 +732,7 @@ continua2:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f4, $f10
 			
 	# Exibe o valor em float
@@ -782,6 +774,7 @@ continua2:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f6, $f10
 	
 	# Exibe o valor em float
@@ -798,6 +791,7 @@ continua2:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f7, $f10
 			
 	# Exibe o valor em float
@@ -806,13 +800,6 @@ continua2:
 	
 	# Cálculo do valor total do pedido
 	add.s $f8, $f7, $f5
-	
-	
-	
-	
-	
-	
-	
 	
 	# Instrução para pular duas linhas
 	li $v0, 4 
@@ -831,7 +818,7 @@ continua2:
 	la $a0, letrax 
 	syscall
 	
-	# Instrução para impressão do nome do produto p3
+	# Instrução para impressão do nome do produto p4
 	li $v0, 4 
 	la $a0, p4
 	syscall
@@ -846,6 +833,7 @@ continua2:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f9, $f10
 	
 	# Exibe o valor em float
@@ -862,6 +850,7 @@ continua2:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f11, $f10
 			
 	# Exibe o valor em float
@@ -933,16 +922,7 @@ continua3:
 	
 	mul.s $f15, $f0, $f14 # O quinto valor final está em $f2
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	# COMEÇA EXIBIR O FINAL
+	# COMEÇA A EXIBIR O RESUMO DA COMPRA
 
 	# PRODUTO 1
 	
@@ -976,6 +956,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f1, $f10
 	
 	# Exibe o valor em float
@@ -992,6 +973,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f2, $f10
 	
 	# Exibe o valor em float
@@ -1015,7 +997,7 @@ continua3:
 	la $a0, letrax 
 	syscall
 	
-	# Instrução para impressão do nome do produto p1
+	# Instrução para impressão do nome do produto p2
 	li $v0, 4 
 	la $a0, p2
 	syscall
@@ -1030,6 +1012,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f3, $f10
 	
 	# Exibe o valor em float
@@ -1046,6 +1029,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f4, $f10
 			
 	# Exibe o valor em float
@@ -1087,6 +1071,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f6, $f10
 	
 	# Exibe o valor em float
@@ -1103,6 +1088,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f7, $f10
 			
 	# Exibe o valor em float
@@ -1129,7 +1115,7 @@ continua3:
 	la $a0, letrax 
 	syscall
 	
-	# Instrução para impressão do nome do produto p3
+	# Instrução para impressão do nome do produto p4
 	li $v0, 4 
 	la $a0, p4
 	syscall
@@ -1144,6 +1130,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f9, $f10
 	
 	# Exibe o valor em float
@@ -1160,6 +1147,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f11, $f10
 			
 	# Exibe o valor em float
@@ -1187,7 +1175,7 @@ continua3:
 	la $a0, letrax 
 	syscall
 	
-	# Instrução para impressão do nome do produto p3
+	# Instrução para impressão do nome do produto p5
 	li $v0, 4 
 	la $a0, p5
 	syscall
@@ -1202,6 +1190,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f14, $f10
 	
 	# Exibe o valor em float
@@ -1218,6 +1207,7 @@ continua3:
 	la $a0, cifrao
 	syscall
 	
+	# Passando o valor para $f12, para poder ser exibido na tela   
 	add.s $f12, $f15, $f10
 			
 	# Exibe o valor em float
